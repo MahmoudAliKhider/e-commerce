@@ -1,2 +1,2 @@
 # e-commerce
-node-modules
+backend project 
