@@ -2,7 +2,7 @@ const router = require('express').Router()
 
 const UserModels = require('../models/users');
 const bcrypt = require('bcrypt')
-
+//update
 router.put('/:id',async (req,res)=>{
     if(req.body.userId == req.params.id){
 
@@ -26,3 +26,5 @@ router.put('/:id',async (req,res)=>{
 
     }
 })
+
+module.exports=router;
