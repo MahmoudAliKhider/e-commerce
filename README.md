@@ -1,2 +1,2 @@
 # e-commerce
-backend project 
+backend project => nodejs express mongoose
