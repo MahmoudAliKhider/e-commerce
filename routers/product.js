@@ -12,4 +12,29 @@ router.post("/create/new",async(req,res)=>{
         res.status(500).json(err)
     }
 })
+//get All progucts
+//use query in header=> product?new="name"  orproduct?categore="categ name"
+router.get("/",async(req,res)=>{
+    const qnew = req.query.new;
+    const qcategories = req.query.categories;
+
+    try {
+        let product;
+        if(qnew){
+            product = await productModule.find().sort({creatAt : -1}).limit(1);
+        }else if (qcategories){
+            product= await productModule.find({
+                categories:{
+                    $in:[qcategories]
+                }
+            })
+        }else{
+            product = await productModule.find()
+        }
+        res.status(200).json(product)
+    } catch (err) {
+        res.status(500).json( err)
+    }
+})
+
 module.exports=router
