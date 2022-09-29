@@ -13,9 +13,9 @@ router.post('/register', async (req,res)=>{
           email:req.body.email,
           password: hashpass,
         });
-        const user = await newUser.save();
-        console.log(user)
-        res.status(200).json(user)
+        const user =  newUser.save();
+        //console.log(user)
+        res.status(200).send(user)
 
     }catch(err){
     res.status(401).json(err)
@@ -23,4 +23,24 @@ router.post('/register', async (req,res)=>{
     }
 })
 
-module.exports=router
+//Login
+router.post('/login', async (req,res)=>{
+  try{
+    const user = await UserModels.findOne({email:req.body.email});
+    !user && res.status(400).json("Worng");
+
+    const validated = await bcrypt.compare(req.body.password , user.password);
+    !validated && res.status(200).json("Incorrect Password");
+
+   const {password,...others} = user._doc;
+   res.status(200).json(others);
+  }
+  catch(err){
+    res.status(500).json(err);
+    console.log(err)
+  
+  }
+})
+
+
+module.exports=router;

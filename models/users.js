@@ -7,10 +7,12 @@ const userSchema = new mongoose.Schema(
         password:{type:String , required:true},
         isAdmin:{
             type:Boolean,
-            default:false
+            default:false,
         },
+        creatAt:{type:String,default:Date},
+        updateAt:{type:String,default:Date}
         
     },
-    {timeseries:true}
+    {timeseries:true},
 )
 module.exports = mongoose.model("Users",userSchema)

@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const DataBase = require('./Database/db')
 const authRouter = require('./routers/auth')
 require('dotenv').config()
+app.use(express.json())
 DataBase()
 
 app.use('/api/auth',authRouter)
