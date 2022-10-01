@@ -13,5 +13,17 @@ router.post('/add',async(req,res)=>{
     
   }
 })
+//get All Orders
+router.get('/',async(req,res)=>{
+  const orders = await ordersModul.find();
+
+  try {
+    res.status(200).json(orders)
+    
+  } catch (err) {
+    res.status(500).json(err)
+    
+  }
+})
 
 module.exports=router
