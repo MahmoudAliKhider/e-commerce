@@ -26,4 +26,16 @@ router.get('/',async(req,res)=>{
   }
 })
 
+// delete order
+router.delete('/delete/:id',async(req,res)=>{
+    const deleteOrder = req.params.id;
+    try {
+        const remove = await ordersModul.remove({_id:deleteOrder})
+        res.status(200).json(remove)
+    } catch (err) {
+        res.status(500).json(err)
+        
+    }
+} )
+
 module.exports=router
