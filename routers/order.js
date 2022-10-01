@@ -3,10 +3,10 @@ const ordersModul = require("../models/orders")
 
 //Add Cart
 router.post('/add',async(req,res)=>{
-  const newCart = new ordersModul(req.body);
+  const newOrdes = new ordersModul(req.body);
 
   try {
-    const saveOrder = await newCart.save();
+    const saveOrder = await newOrdes.save();
     res.status(200).json(saveOrder)
   } catch (err) {
     res.status(500).json(err)
