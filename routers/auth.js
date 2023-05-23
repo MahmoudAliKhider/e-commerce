@@ -13,8 +13,7 @@ router.post('/register', async (req,res)=>{
           email:req.body.email,
           password: hashpass,
         });
-        const user =  newUser.save();
-        //console.log(user)
+        const user = await newUser.save();
         res.status(200).send(user)
 
     }catch(err){
@@ -27,7 +26,7 @@ router.post('/register', async (req,res)=>{
 router.post('/login', async (req,res)=>{
   try{
     const user = await UserModels.findOne({email:req.body.email});
-    !user && res.status(400).json("Worng");
+    !user && res.status(400).json("User Not Found");
 
     const validated = await bcrypt.compare(req.body.password , user.password);
     !validated && res.status(200).json("Incorrect Password");
